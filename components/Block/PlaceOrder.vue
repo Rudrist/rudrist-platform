@@ -74,8 +74,11 @@ const onChangeBS = (evt, color) => {
                     </div>
                 </div>
             </div>
-            <div class="w-full">
-                <input type="range" min="1" max="100" value="50">
+            <div class="relative w-full flex items-center justify-center">
+                <div class="absolute w-full h-6 flex items-center justify-between">
+                    <span v-for="i in 5" :value="i*25" class="w-3 h-3 bg-gray-200 rotate-45 rounded-sm"></span>
+                </div>
+                <input type="range" min="0" max="100" step="25" value="0">
             </div>
             <div class="w-full h-8 overflow-hidden rounded-lg border-2 border-gray-200">
                 <input class="rounded-lg" type="text" placeholder="Total">
@@ -96,6 +99,35 @@ input[type="text"] {
 }
 input[type="submit"] {
     background-color: var(--active-color);
+}
+
+input[type="range"] {
+    @apply bg-gray-200;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.1rem;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background: var(--active-color);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transform: rotate(45deg);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    background: var(--active-color);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transform: rotate(45deg);
 }
 
 .option-bs li.active {
