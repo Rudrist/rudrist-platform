@@ -3,10 +3,10 @@
     <div class="px-6 py-4 h-full w-auto bg-white-100 rounded-xl shadow-md flex flex-col">
       <p class="h2-font pb-[2%]">Positions</p>  
       <div class="grid gap-2">
-        <div class="portfolio px-2 w-64 h-16" v-for="portfolio in portfolios" :key="portfolio.id" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
-          <div>{{ portfolio.name }}</div>
+        <div class="portfolio px-2 w-64 h-16" v-for="(position, idx) in portfolioStore.positions" :key="idx" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
+          <div>{{ position.symbol }}</div>
           <div class="flex flex-row justify-end items-center">
-              <div class="">${{ portfolio.amount.toLocaleString() }} &nbsp;&nbsp;&nbsp;BTC/USDT</div>
+              <div class="">${{ position.balance.toLocaleString() }} &nbsp;&nbsp;&nbsp;BTC/USDT</div>
           </div>
         </div>
       </div>
@@ -15,6 +15,8 @@
 
 <script setup>
 import { ref } from 'vue';
+import { usePortfolioStore } from '@/stores/portfolioStore';
+const portfolioStore = usePortfolioStore();
 
 // Initialize portfolios as a reactive reference
 const portfolios = ref([

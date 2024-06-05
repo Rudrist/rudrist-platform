@@ -5,7 +5,7 @@ const sideNavigations = ref([
         icon: "/_nuxt/assets/img/admin/AdminDashboard.png",
     }, 
     {
-        name: " Account",
+        name: "Account",
         icon: "/_nuxt/assets/img/admin/Account.png",
     }, 
     {

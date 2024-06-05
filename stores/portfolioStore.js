@@ -6,10 +6,13 @@ export const usePortfolioStore = defineStore('portfolio', {
     id: 'portfolio',
     state: () => ({
     portfolios: [],
+    portfolioNames: [],
+    portfoliosSimplified: [],
     currentPortfolioId: '',
     currentPortfolioName: '',
     orders: [],
-    positions: []
+    positions: [],
+    positionNames: []
   }),
   actions: {
     async fetchPortfolios() {
@@ -21,6 +24,16 @@ export const usePortfolioStore = defineStore('portfolio', {
               }
           );
           this.portfolios = response.data;
+          this.portfolioNames = this.portfolios.map(x => x.name)
+          this.portfoliosSimplified = this.portfolios.map(item => {
+            const x = item.positions.reduce((sum, position) => sum + parseInt(position.balance, 10), 0);
+            return {
+                id: item.id,
+                name: item.name,
+                amount: x
+            };
+          });
+          console.log('this is fetchPOrtfolios', this.portfoliosSimplified)
         } catch (error) {
           console.error('Error fetching portfolios:', error);
           this.status = 'error';
@@ -44,6 +57,8 @@ export const usePortfolioStore = defineStore('portfolio', {
         const target = this.portfolios.find(x => x.id === this.currentPortfolioId)
         // console.log('This is fetchOrders', this.portfolios, this.orders, index)
         this.positions = target.positions
+        this.positionNames = this.positions.map(x => x.symbol)
+        // console.log('positionNames', this.positionNames, this.portfolioNames)
       } catch (error) {
         console.error('Error fetching orders:', error);
       }

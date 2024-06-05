@@ -66,6 +66,8 @@
 </template>
     
 <script setup>
+import { usePortfolioStore } from '@/stores/portfolioStore';
+const portfolioStore = usePortfolioStore();
 
 const dropDownItems = ref([
     {
@@ -77,7 +79,16 @@ const dropDownItems = ref([
     },
 ]);
 
-const amount = 322041;
+// const amount = 322041;
+
+const amount = computed (() => {
+    let temp = 0
+    for (const x of portfolioStore.portfoliosSimplified) {
+        temp += parseInt(x.amount, 10);
+    }
+    return temp
+})
+
 const ledgers = [
     {
         ledgerId: '1',
