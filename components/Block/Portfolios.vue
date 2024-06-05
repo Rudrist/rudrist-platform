@@ -5,7 +5,7 @@
         </div>
 		<div 
 			class="portfolio rounded-lg" 
-			v-for="portfolio in portfolioStore.portfolios" :key="portfolio.id"
+			v-for="portfolio in portfolioStore.portfoliosSimplified" :key="portfolio.id"
 			@click="handleClick(portfolio.id, portfolio.name)"
 			@mouseover="handleMouseOver($event)"
 			@mouseleave="handleMouseLeave($event)"
@@ -15,8 +15,8 @@
 				<div class="portfolio-value text-font pl-[35%]">$</div>
 				<div class="flex flex-row justify-end items-center">
 					<!-- TODO: real amount instead of position-->
-					<div class="portfolio-value text-font">{{ portfolio.positions[0].balance }}&nbsp&nbsp</div>
-					<div class="portfolio-currency tag-font">{{ portfolio.positions[0].symbol }}</div>
+					<div class="portfolio-value text-font">{{ portfolio.amount }}&nbsp&nbsp</div>
+					<div class="portfolio-currency tag-font">BTC</div>
 				</div>
 			</div>
 		</div>

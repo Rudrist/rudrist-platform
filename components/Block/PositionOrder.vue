@@ -61,7 +61,7 @@
 							<p class="tag-font">{{ currentCurrency }}</p>
 						</div>
 						<div class="flex-1 text-right">
-							<p class="text-font">1234</p>
+							<p class="text-font">${{ position.balance * 0.2 }}</p>
 						</div>
 					</div>
 					<hr/>
@@ -80,7 +80,7 @@
 						<p class="text-font">{{ currentCurrency }}</p>
 					</div>
 					<div class="flex-1 text-right">
-						<p class="text-font">23589</p>
+						<p class="text-font">${{ portfolioStore.positions[0].balance * 0.2 * portfolioStore.positions.length }}</p>
 					</div>
 				</div>
 			</div>

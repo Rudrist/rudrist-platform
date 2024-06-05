@@ -5,6 +5,7 @@ import { defineStore } from 'pinia';
 export const usePortfolioStore = defineStore('portfolio', {
     id: 'portfolio',
     state: () => ({
+    user_type: 3,
     portfolios: [],
     portfolioNames: [],
     portfoliosSimplified: [],
@@ -39,6 +40,10 @@ export const usePortfolioStore = defineStore('portfolio', {
           this.status = 'error';
         }
       }, 0.0000001)
+    },
+    updateUser (type) {
+      this.user_type = type;
+      console.log('this function is fired with account type', this.user_type)
     },
 
     // This also implements fetchOrders

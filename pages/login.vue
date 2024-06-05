@@ -54,14 +54,17 @@
 import { useNuxtApp } from "#app"
 import { useCookie } from '#app'
 import { reloadNuxtApp } from "#app";
+import { usePortfolioStore } from '@/stores/portfolioStore';
+
+const portfolioStore = usePortfolioStore()
 
 definePageMeta({
   middleware: ["admin-auth"] 
 })
 
-reloadNuxtApp({
-    ttl: 1000,
-});
+// reloadNuxtApp({
+//     ttl: 1000,
+// });
 
 const nuxtApp = useNuxtApp();
 const api = nuxtApp.$api;
@@ -83,8 +86,13 @@ const login = async () => {
       name: userId,
       password
     });
-    if (result.status == 'successful') {
+    // 0: admin, 1: trader
+    if (result.status == 'successful' && result.account_type === 1) {
+      portfolioStore.updateUser(result.account_type)
       router.push('/')
+    } else if (result.status == 'successful' && result.account_type === 0) {
+      portfolioStore.updateUser(result.account_type)
+      router.push('/admindashboard')
     } else {
       console.error('login failed')
     }
