@@ -17,7 +17,6 @@ export const usePortfolioStore = defineStore('portfolio', {
   }),
   actions: {
     async fetchPortfolios() {
-      setTimeout(async () => {
         try {
           const response = await useNuxtApp().$api.portfolio.getPortfolio(
               {}, {
@@ -34,16 +33,15 @@ export const usePortfolioStore = defineStore('portfolio', {
                 amount: x
             };
           });
-          console.log('this is fetchPOrtfolios', this.portfoliosSimplified)
+          // console.log('this is fetchPOrtfolios', this.portfoliosSimplified)
         } catch (error) {
           console.error('Error fetching portfolios:', error);
           this.status = 'error';
         }
-      }, 0.0000001)
     },
     updateUser (type) {
       this.user_type = type;
-      console.log('this function is fired with account type', this.user_type)
+      // console.log('this function is fired with account type', this.user_type)
     },
 
     // This also implements fetchOrders

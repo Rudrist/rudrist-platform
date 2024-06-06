@@ -42,7 +42,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         params: method.toLowerCase() === 'get' ? data : params,
         headers,
         credentials: 'include', // Ensure credentials are included
-      });
+      })
 
       const result = response.data.value;
       if (!result) {
@@ -52,7 +52,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
       return result; // This should be the JSON response
     } catch (error) {
-      if (process.env.NODE_ENV !== 'production') console.error(error);
+      // if (process.env.NODE_ENV !== 'production') console.error(error);
       throw error;
     }
   };
